@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Scrisoare</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap">
+<style>
+  :root {
+    --bg:#FAF8F4;--bg-card:#FFFFFF;--fg:#1C1A18;--fg-muted:#6B6560;--fg-faint:#9A9590;
+    --teal:#1A7A6E;--teal-pale:#EAF4F2;--gold:#C8973A;--divider:#E8E4DC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#141210;--bg-card:#1E1C18;--fg:#F0EDE7;--fg-muted:#9A9590;--fg-faint:#6B6560;
+      --teal:#2DA090;--teal-pale:#0E2422;--gold:#D4A84A;--divider:#2E2B26;color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#141210;--bg-card:#1E1C18;--fg:#F0EDE7;--fg-muted:#9A9590;--fg-faint:#6B6560;
+    --teal:#2DA090;--teal-pale:#0E2422;--gold:#D4A84A;--divider:#2E2B26;color-scheme:dark;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-weight:300;font-size:1rem;line-height:1.7;margin:0;padding-inline:20px}
+  .page{max-width:680px;margin-inline:auto;padding-block:64px 80px;display:flex;flex-direction:column}
+  .wordmark{display:flex;flex-direction:column;gap:4px;margin-bottom:48px}
+  .wordmark-name{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,6vw,3rem);font-weight:400;letter-spacing:-0.01em;color:var(--teal);line-height:1;margin:0}
+  .wordmark-name em{font-style:italic;color:var(--gold)}
+  .wordmark-pronunciation{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);font-weight:400}
+  .rule{border:none;border-top:1px solid var(--divider);margin:0 0 44px}
+  .envelope-deco{display:block;margin:0 0 28px;opacity:.5}
+  .hero-eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500;margin:0 0 16px}
+  .tri-block{margin-bottom:36px}
+  .tri-block+.tri-block{border-top:1px solid var(--divider);padding-top:32px}
+  .lang-tag{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);font-weight:500;margin:0 0 8px}
+  .hero-headline{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:600;line-height:1.22;text-wrap:balance;margin:0 0 16px}
+  .hero-headline.de,.hero-headline.ro{font-size:clamp(1.3rem,4vw,1.9rem)}
+  .hero-body{font-size:1rem;color:var(--fg-muted);margin:0;max-width:56ch;line-height:1.75}
+  .hero-body strong{color:var(--fg);font-weight:500}
+  .hero-body.de,.hero-body.ro{font-size:.9375rem}
+  .signifiers{display:flex;flex-wrap:wrap;gap:10px 24px;margin:36px 0 44px}
+  .sig{display:flex;align-items:center;gap:8px;font-size:.875rem;color:var(--fg-muted)}
+  .sig-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0}
+  .form-card{background:var(--bg-card);border:1px solid var(--divider);border-radius:12px;padding:32px 28px;margin-bottom:48px}
+  .form-card-headlines{margin-bottom:20px}
+  .form-card-headline-row{margin-bottom:6px}
+  .form-card-headline-row .lang-tag{margin-bottom:2px}
+  .form-card-headline-row h2{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:600;margin:0 0 4px}
+  .form-card-sub{font-size:.875rem;color:var(--fg-muted);margin:0;line-height:1.5}
+  .form-card-divider{border:none;border-top:1px solid var(--divider);margin:16px 0}
+  .gform-wrap{background:var(--teal-pale);border-radius:8px;padding:20px;text-align:center;margin-bottom:12px}
+  .btn-join{display:inline-block;padding:13px 36px;background:var(--teal);color:#fff;border-radius:8px;font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;text-decoration:none;letter-spacing:.02em;transition:background .15s}
+  .btn-join:hover{background:#155f56}
+  .form-note{font-size:.8125rem;color:var(--fg-faint);margin:0;text-align:center;line-height:1.5}
+  .teaser{border-top:1px solid var(--divider);padding-top:36px;margin-bottom:40px}
+  .teaser-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);margin:0 0 24px;font-weight:400}
+  .teaser-items{display:flex;flex-direction:column;gap:24px}
+  .teaser-item{display:flex;gap:16px;align-items:flex-start}
+  .teaser-num{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:400;font-style:italic;color:var(--teal);line-height:1;flex-shrink:0;width:22px;padding-top:2px}
+  .teaser-text{min-width:0}
+  .teaser-lang{font-size:.875rem;color:var(--fg-muted);line-height:1.6;margin:0 0 4px}
+  .teaser-lang strong{color:var(--fg);font-weight:500}
+  .teaser-lang.secondary{font-size:.8125rem;color:var(--fg-faint);margin:0 0 2px}
+  footer{font-size:.8125rem;color:var(--fg-muted);border-top:1px solid var(--divider);padding-top:28px;text-align:center;line-height:1.7}
+  footer a{color:var(--teal);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  @media (max-width:480px){.form-card{padding:22px 18px}.wordmark{margin-bottom:36px}.page{padding-block:44px 60px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="wordmark">
+    <h1 class="wordmark-name">Scri<em>soa</em>re</h1>
+    <span class="wordmark-pronunciation">skri · SWA · re</span>
+  </div>
+  <hr class="rule">
+  <svg class="envelope-deco" width="42" height="30" viewBox="0 0 42 30" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="40" height="28" rx="3" stroke="var(--teal)" stroke-width="1.5"/>
+    <path d="M1 4l20 14L41 4" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <p class="hero-eyebrow">Letters from Romania · Starting December 2026</p>
+  <div class="tri-block">
+    <p class="lang-tag">English</p>
+    <h2 class="hero-headline">A letter in your mailbox — once a month, from Bucharest.</h2>
+    <p class="hero-body">In December, we're moving to Romania. And we're taking you with us — through a handwritten letter: our real experiences, a piece of culture, and a <strong>painting by our children</strong> — watch them grow, one letter at a time. No feed. No screen. Real paper.</p>
+  </div>
+  <div class="tri-block">
+    <p class="lang-tag">Deutsch</p>
+    <h2 class="hero-headline de">Ein Brief in deinem Briefkasten — einmal im Monat, aus Bukarest.</h2>
+    <p class="hero-body de">Im Dezember ziehen wir nach Rumänien. Und wir nehmen dich mit — durch einen handgeschriebenen Brief: unsere echten Erlebnisse, ein Stück Kultur, und ein <strong>Bild, gemalt von unseren Kindern</strong> — beobachte, wie sie wachsen, Brief für Brief. Kein Feed. Kein Bildschirm. Echtes Papier.</p>
+  </div>
+  <div class="tri-block">
+    <p class="lang-tag">Română</p>
+    <h2 class="hero-headline ro">O scrisoare în cutia ta poștală — o dată pe lună, din București.</h2>
+    <p class="hero-body ro">În decembrie ne mutăm în România. Și te luăm cu noi — printr-o scrisoare scrisă de mână: experiențele noastre reale, o bucată de cultură și un <strong>desen pictat de copiii noștri</strong> — urmărește-i cum cresc, o scrisoare pe lună. Fără feed. Fără ecran. Hârtie adevărată.</p>
+  </div>
+  <div class="signifiers">
+    <div class="sig"><span class="sig-dot"></span>Monthly letter · Monatlicher Brief · Scrisoare lunară</div>
+    <div class="sig"><span class="sig-dot"></span>From Bucharest · Aus Bukarest · Din București</div>
+    <div class="sig"><span class="sig-dot"></span>Children's artwork · Kinderkunst · Artă de copii</div>
+    <div class="sig"><span class="sig-dot"></span>Worldwide · Weltweit · În toată lumea</div>
+  </div>
+  <div class="form-card">
+    <div class="form-card-headlines">
+      <div class="form-card-headline-row">
+        <p class="lang-tag">English</p>
+        <h2>Join the waitlist.</h2>
+        <p class="form-card-sub">We'll let you know as soon as the first letter is ready — in December.</p>
+      </div>
+      <hr class="form-card-divider">
+      <div class="form-card-headline-row">
+        <p class="lang-tag">Deutsch</p>
+        <h2>Trag dich auf die Warteliste ein.</h2>
+        <p class="form-card-sub">Wir melden uns, sobald der erste Brief fertig ist — im Dezember.</p>
+      </div>
+      <hr class="form-card-divider">
+      <div class="form-card-headline-row">
+        <p class="lang-tag">Română</p>
+        <h2>Înscrie-te pe lista de așteptare.</h2>
+        <p class="form-card-sub">Te anunțăm imediat ce prima scrisoare este gata — în decembrie.</p>
+      </div>
+    </div>
+    <div class="gform-wrap">
+      <a class="btn-join" href="https://forms.gle/JQTJR2TistrbWXVT9" target="_blank" rel="noopener">Join →</a>
+    </div>
+    <p class="form-note">No spam · Kein Spam · Fără spam</p>
+  </div>
+  <div class="teaser">
+    <p class="teaser-label">What's inside · Was drin ist · Ce conține</p>
+    <div class="teaser-items">
+      <div class="teaser-item">
+        <span class="teaser-num">1</span>
+        <div class="teaser-text">
+          <p class="teaser-lang"><strong>Our experiences.</strong> A market, a neighbour, a word we can't forget — straight from everyday life in Bucharest.</p>
+          <p class="teaser-lang secondary"><strong>Unsere Erlebnisse.</strong> Ein Markt, eine Nachbarin, ein Wort, das wir nicht vergessen — direkt aus unserem Alltag in Bukarest.</p>
+          <p class="teaser-lang secondary"><strong>Experiențele noastre.</strong> O piață, un vecin, un cuvânt de neuitat — direct din viața noastră de zi cu zi din București.</p>
+        </div>
+      </div>
+      <div class="teaser-item">
+        <span class="teaser-num">2</span>
+        <div class="teaser-text">
+          <p class="teaser-lang"><strong>Romanian culture.</strong> A holiday, a tradition, a recipe — something you wouldn't just google.</p>
+          <p class="teaser-lang secondary"><strong>Rumänische Kultur.</strong> Ein Feiertag, eine Tradition, ein Rezept — etwas, das man nicht einfach googelt.</p>
+          <p class="teaser-lang secondary"><strong>Cultură românească.</strong> O sărbătoare, o tradiție, o rețetă — ceva ce nu găsești pe Google.</p>
+        </div>
+      </div>
+      <div class="teaser-item">
+        <span class="teaser-num">3</span>
+        <div class="teaser-text">
+          <p class="teaser-lang"><strong>Children's artwork.</strong> A painting every month — watch them develop and grow.</p>
+          <p class="teaser-lang secondary"><strong>Kinderkunst.</strong> Ein Bild jeden Monat — beobachte, wie sie sich entwickeln und wachsen.</p>
+          <p class="teaser-lang secondary"><strong>Artă de copii.</strong> Un desen pictat în fiecare lună — urmărește-i cum se dezvoltă și cresc.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>Scrisoare — Snail Mail from Bucharest &nbsp;·&nbsp; <a href="https://www.instagram.com/scrisoare.ro" target="_blank" rel="noopener">@scrisoare.ro</a></p>
+    <p style="margin-top:4px;">Questions? <span style="user-select:all;">hello.scrisoare@gmail.com</span></p>
+  </footer>
+</div>
+</body>
+</html>
