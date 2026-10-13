@@ -8,6 +8,7 @@ Texte ändern: unten im Wörterbuch T, dann neu bauen.
 import sys
 
 WAITLIST = "--waitlist" in sys.argv
+MONTHLY = "--monthly" in sys.argv  # Monatsabo erst ab Januar 2027 anbieten: python3 build.py --monthly
 FORM_LINK = "https://forms.gle/tGnXjn6R2VdMi2mL7"
 MAIL = "snailmail.romania@gmail.com"
 LINKS = {
@@ -194,6 +195,8 @@ def page(lang):
   </section>'''
         cards = ""
         for key, name, price, unit, text, btn in t["plans"]:
+            if key == "monatlich" and not MONTHLY:
+                continue
             feat = key == "gruendung"
             badge = f'\n        <span class="badge">{t["badge"]}</span>' if feat else ""
             cards += f'''      <div class="plan{' featured' if feat else ''}">{badge}
