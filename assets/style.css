@@ -215,3 +215,7 @@
   .section-title { margin-bottom: 18px; }
   .section-title + .en { margin-top: -14px; }
   header { padding-top: 18px; }
+  /* Ohne Monatsabo: drei Karten nebeneinander statt einer allein in der Reihe */
+  @media (min-width: 521px) {
+    .plans:has(> .plan:nth-child(4):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
