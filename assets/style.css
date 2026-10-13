@@ -1,0 +1,217 @@
+
+  /* Layout: ein Briefbogen auf Papier – schmale Spalte, Luftpost-Rand oben und unten, Farbkarten in der Markenrotation */
+  :root {
+    --paper:    #FBF7F0;
+    --sheet:    #FFFFFF;
+    --ink:      #4A3428;   /* warmes Dunkelbraun */
+    --ink-soft: #7A6355;
+    --line:     #E9DFD2;
+    --petrol:   #3F8E8A;   /* helles Petrol */
+    --sky:      #9CCBEA;   /* Himmelblau */
+    --lilac:    #C3B0DE;   /* Flieder */
+    --apricot:  #F4B892;   /* Apricot */
+    --red:      #C8423A;
+    --gold:     #E3B23C;
+    --display:  'Kalam', 'Comic Sans MS', cursive;
+    --body:     'Lora', Georgia, 'Times New Roman', serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin: 0;
+    padding-inline: 18px;
+  }
+  .airmail {
+    height: 10px;
+    margin-inline: -18px;
+    background: repeating-linear-gradient(-45deg,
+      var(--red) 0 14px, var(--sheet) 14px 22px, #2E5E9E 22px 36px, var(--sheet) 36px 44px);
+  }
+  .page {
+    max-width: 640px;
+    margin-inline: auto;
+    padding-block: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* Kopf */
+  header { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+  .snail { width: min(380px, 100%); height: auto; display: block; }
+  .brand { min-width: 0; }
+  .brand h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.3rem, 8vw, 3.2rem);
+    line-height: 1;
+    margin: 0;
+    color: var(--petrol);
+  }
+  .brand .sub {
+    font-family: var(--display);
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin: 4px 0 0;
+  }
+
+  /* Hero */
+  .hero { display: flex; flex-direction: column; gap: 18px; }
+  .hero h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 5.5vw, 2.3rem);
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero p { margin: 0; max-width: 58ch; }
+  .en { color: var(--ink-soft); font-style: italic; font-size: 0.95rem; }
+
+  /* Warteliste */
+  .waitlist {
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 2px 0 var(--line);
+  }
+  .waitlist h3 {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .waitlist p { margin: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 6px; }
+  .btn {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: var(--petrol);
+    color: #fff;
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { background: #33746F; transform: translateY(-1px); }
+  .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .small { font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* Abschnittstitel */
+  .section-title {
+    font-family: var(--display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+  .section-title + .en { margin: 0 0 22px; }
+
+  /* Inhalt: Farbkarten in Markenrotation */
+  .contents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .item { border-radius: 6px; padding: 18px 18px 20px; min-width: 0; }
+  .item:nth-child(1) { background: color-mix(in srgb, var(--petrol) 22%, var(--sheet)); }
+  .item:nth-child(2) { background: color-mix(in srgb, var(--sky) 40%, var(--sheet)); }
+  .item:nth-child(3) { background: color-mix(in srgb, var(--lilac) 42%, var(--sheet)); }
+  .item:nth-child(4) { background: color-mix(in srgb, var(--apricot) 42%, var(--sheet)); }
+  .item h4 { font-family: var(--display); font-size: 1.3rem; margin: 0 0 4px; line-height: 1.2; }
+  .item p { margin: 0; font-size: 0.95rem; }
+  .item .en { font-size: 0.85rem; margin-top: 6px; }
+  .stamp {
+    display: inline-block;
+    border: 2px dashed var(--red);
+    color: var(--red);
+    font-family: var(--display);
+    padding: 0 8px;
+    border-radius: 3px;
+    font-size: 1rem;
+    margin-top: 8px;
+    transform: rotate(-2deg);
+  }
+
+  /* Über mich */
+  .about p { margin: 0 0 12px; max-width: 60ch; }
+  .about .hello { font-family: var(--display); font-size: 1.45rem; line-height: 1.3; color: var(--petrol); }
+
+  /* Preise */
+  .prices { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .prices td { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .prices td:last-child { text-align: right; font-weight: 600; white-space: nowrap; padding-left: 12px; }
+  .founding {
+    margin-top: 18px;
+    background: color-mix(in srgb, var(--gold) 22%, var(--sheet));
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .founding strong { font-family: var(--display); font-size: 1.25rem; font-weight: 700; }
+  .founding p { margin: 0; }
+
+  /* Bestellen */
+  .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .plan {
+    background: var(--sheet); border: 1px solid var(--line); border-radius: 6px;
+    padding: 20px 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  }
+  .plan h4 { font-family: var(--display); font-size: 1.3rem; margin: 0; line-height: 1.2; }
+  .plan .price { font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--petrol); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .plan .price small { font-size: 1rem; font-weight: 400; color: var(--ink-soft); }
+  .plan p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+  .plan .btn { margin-top: auto; align-self: flex-start; font-size: 1.05rem; padding: 10px 22px; }
+  .plan .spacer { flex: 1; min-height: 6px; }
+  .plan.featured {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--gold) 20%, var(--sheet));
+    border-color: color-mix(in srgb, var(--gold) 60%, var(--sheet));
+  }
+  .plan.featured .badge {
+    align-self: flex-start; font-family: var(--display); font-size: 0.95rem;
+    background: var(--red); color: #fff; padding: 1px 10px; border-radius: 999px;
+  }
+  .paynote { margin: 14px 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+  .giftnote { margin: 10px 0 0; font-size: 0.9rem; }
+
+  /* FAQ */
+  .faq { display: flex; flex-direction: column; gap: 6px; }
+  details { border-bottom: 1px solid var(--line); padding: 10px 0; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-family: var(--display); font-size: 1.4rem; line-height: 1; color: var(--petrol); }
+  details[open] summary::after { content: '–'; }
+  summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  details p { margin: 8px 0 0; color: var(--ink-soft); }
+  summary .en { display: block; font-weight: 400; font-size: 0.85rem; margin-top: 2px; }
+  details p.en { margin-top: 4px; }
+
+  footer { font-size: 0.9rem; color: var(--ink-soft); text-align: center; display: flex; flex-direction: column; gap: 4px; }
+  footer a { color: var(--petrol); }
+  .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; margin-top: 10px; font-size: 0.85rem; }
+  footer .sig { font-family: var(--display); font-size: 1.4rem; color: var(--ink); }
+
+  @media (max-width: 520px) {
+    .contents, .plans { grid-template-columns: minmax(0, 1fr); }
+    .page { padding-block: 36px 52px; gap: 44px; }
+    .snail { width: min(300px, 100%); }
+  }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+  /* Sprachumschalter */
+  .langswitch { position: absolute; top: 22px; right: 18px; display: flex; gap: 2px; font-family: var(--display); font-size: 1rem; background: var(--sheet); border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+  .langswitch a, .langswitch span { padding: 2px 12px; border-radius: 999px; text-decoration: none; color: var(--ink-soft); }
+  .langswitch span[aria-current] { background: var(--petrol); color: #fff; }
+  .langswitch a:hover { color: var(--petrol); }
+  .langswitch a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .wrap { position: relative; }
+  .section-title { margin-bottom: 18px; }
+  .section-title + .en { margin-top: -14px; }
+  header { padding-top: 18px; }
