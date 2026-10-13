@@ -8,7 +8,7 @@ Texte ändern: unten im Wörterbuch T, dann neu bauen.
 import sys
 
 WAITLIST = "--waitlist" in sys.argv
-FORM_LINK = "https://forms.gle/JQTJR2TistrbWXVT9"
+FORM_LINK = "https://forms.gle/tGnXjn6R2VdMi2mL7"
 MAIL = "snailmail.romania@gmail.com"
 LINKS = {
     "gruendung": "STRIPE_LINK_GRUENDUNG",
