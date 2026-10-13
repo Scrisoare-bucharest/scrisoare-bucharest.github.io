@@ -12,10 +12,10 @@ MONTHLY = "--monthly" in sys.argv  # Monatsabo erst ab Januar 2027 anbieten: pyt
 FORM_LINK = "https://forms.gle/tGnXjn6R2VdMi2mL7"
 MAIL = "snailmail.romania@gmail.com"
 LINKS = {
-    "gruendung": "https://buy.stripe.com/3cIcN4fIVeqdcmz7x8bV600",
+    "gruendung": "https://buy.stripe.com/7sYdR8gMZdm92LZdVwbV601",
     "monatlich": "STRIPE_LINK_MONATLICH",
     "3m": "STRIPE_LINK_3M",
-    "6m": "https://buy.stripe.com/7sYdR8gMZdm92LZdVwbV601",
+    "6m": "https://buy.stripe.com/3cIcN4fIVeqdcmz7x8bV600",
     "12m": "STRIPE_LINK_12M",
 }
 
