@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Einmal im Monat ein echter Brief aus Bukarest. Schneckenpost aus Rumänien – Snail Mail from Romania.">
 <title>Schneckenpost aus Rumänien</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   /* Layout: ein Briefbogen auf Papier – schmale Spalte, Luftpost-Rand oben und unten, Farbkarten in der Markenrotation */
   :root {
@@ -165,6 +165,30 @@
   .founding strong { font-family: var(--display); font-size: 1.25rem; font-weight: 700; }
   .founding p { margin: 0; }
 
+  /* Bestellen */
+  .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .plan {
+    background: var(--sheet); border: 1px solid var(--line); border-radius: 6px;
+    padding: 20px 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  }
+  .plan h4 { font-family: var(--display); font-size: 1.3rem; margin: 0; line-height: 1.2; }
+  .plan .price { font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--petrol); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .plan .price small { font-size: 1rem; font-weight: 400; color: var(--ink-soft); }
+  .plan p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+  .plan .btn { margin-top: auto; align-self: flex-start; font-size: 1.05rem; padding: 10px 22px; }
+  .plan .spacer { flex: 1; min-height: 6px; }
+  .plan.featured {
+    grid-column: 1 / -1;
+    background: color-mix(in srgb, var(--gold) 20%, var(--sheet));
+    border-color: color-mix(in srgb, var(--gold) 60%, var(--sheet));
+  }
+  .plan.featured .badge {
+    align-self: flex-start; font-family: var(--display); font-size: 0.95rem;
+    background: var(--red); color: #fff; padding: 1px 10px; border-radius: 999px;
+  }
+  .paynote { margin: 14px 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+  .giftnote { margin: 10px 0 0; font-size: 0.9rem; }
+
   /* FAQ */
   .faq { display: flex; flex-direction: column; gap: 6px; }
   details { border-bottom: 1px solid var(--line); padding: 10px 0; }
@@ -177,10 +201,11 @@
 
   footer { font-size: 0.9rem; color: var(--ink-soft); text-align: center; display: flex; flex-direction: column; gap: 4px; }
   footer a { color: var(--petrol); }
+  .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; margin-top: 10px; font-size: 0.85rem; }
   footer .sig { font-family: var(--display); font-size: 1.4rem; color: var(--ink); }
 
   @media (max-width: 520px) {
-    .contents { grid-template-columns: minmax(0, 1fr); }
+    .contents, .plans { grid-template-columns: minmax(0, 1fr); }
     .page { padding-block: 36px 52px; gap: 44px; }
     .snail { width: min(300px, 100%); }
   }
@@ -209,12 +234,12 @@
   </section>
 
   <section class="waitlist" aria-labelledby="wl">
-    <h3 id="wl">Trag dich auf die Warteliste ein.</h3>
-    <p>Am 1. Dezember, Rumäniens Nationalfeiertag, öffne ich die Schneckenpost. Wer auf der Warteliste steht, erfährt es zuerst und kann sich einen der 30 Gründungsplätze sichern.</p>
-    <p class="en">Join the waitlist. Snail Mail opens on 1 December, Romania's National Day. You'll hear first and can claim one of 30 founding spots.</p>
+    <h3 id="wl">Jetzt vorbestellen. Der erste Brief kommt im Januar.</h3>
+    <p>Die ersten 30 werden Gründungsmitglieder und bekommen ein Jahr Schneckenpost für 120 €.</p>
+    <p class="en">Pre-order now. The first letter arrives in January. The first 30 become founding members: one year for €120.</p>
     <div class="actions">
-      <a class="btn" href="https://forms.gle/JQTJR2TistrbWXVT9" target="_blank" rel="noopener">Auf die Warteliste →</a>
-      <span class="small">Kein Spam · No spam</span>
+      <a class="btn" href="#bestellen">Zu den Abos →</a>
+      <span class="small">PayPal · Lastschrift · Karte</span>
     </div>
   </section>
 
@@ -255,22 +280,51 @@
     <p class="en">Hi there, lovely to have you here! I'm Rosie :) I grew up in a small village in Romania and came to Germany with my parents in the mid-1990s. Then came school, university (partly abroad), work at international companies and many projects abroad. And now? Quite unexpectedly, my husband, our two little ones (2 and 4) and I are off to Bucharest! We'll get to know the country all over again, and I'm sure there's so much to discover. I'll tell you all about it. On paper. Every month.</p>
   </section>
 
-  <section aria-labelledby="price">
-    <h2 class="section-title" id="price">Preise ab 1. Dezember</h2>
-    <p class="en">Prices from 1 December · DE, AT, CH</p>
-    <table class="prices">
-      <tbody>
-        <tr><td>Monatlich, jederzeit kündbar</td><td>14 €</td></tr>
-        <tr><td>3 Monate</td><td>39 €</td></tr>
-        <tr><td>6 Monate</td><td>72 €</td></tr>
-        <tr><td>12 Monate</td><td>132 €</td></tr>
-      </tbody>
-    </table>
-    <div class="founding">
-      <strong>Gründungsmitglied: 120 € für ein Jahr</strong>
-      <p>Nur 30 Plätze, nur bis 31.12. Auch als Geschenk, mit Gutschein zum Ausdrucken.</p>
-      <p class="en">Founding member: €120 for a year. 30 spots only, until 31 December. Also available as a gift.</p>
+  <section id="bestellen" aria-labelledby="price">
+    <h2 class="section-title" id="price">Abo wählen</h2>
+    <p class="en">Choose your plan · Versand nach DE, AT, CH</p>
+    <div class="plans">
+      <div class="plan featured">
+        <span class="badge">Nur 30 Plätze · bis 31.12.</span>
+        <h4>Gründungsmitglied</h4>
+        <div class="price">120 € <small>für 12 Briefe</small></div>
+        <p>Ein Jahr Schneckenpost zum Gründungspreis. Einmal bezahlen, endet automatisch.</p>
+        <p class="en">Founding member: 12 letters for €120. One payment, ends automatically.</p>
+        <span class="spacer"></span>
+        <a class="btn" href="STRIPE_LINK_GRUENDUNG">Gründungsmitglied werden</a>
+      </div>
+      <div class="plan">
+        <h4>Monatlich</h4>
+        <div class="price">14 € <small>pro Brief</small></div>
+        <p>Jederzeit zum Monatsende kündbar.</p>
+        <span class="spacer"></span>
+        <a class="btn" href="STRIPE_LINK_MONATLICH">Monatlich bestellen</a>
+      </div>
+      <div class="plan">
+        <h4>3 Monate</h4>
+        <div class="price">39 € <small>für 3 Briefe</small></div>
+        <p>Einmal bezahlen, endet automatisch. Schön zum Verschenken.</p>
+        <span class="spacer"></span>
+        <a class="btn" href="STRIPE_LINK_3M">3 Monate bestellen</a>
+      </div>
+      <div class="plan">
+        <h4>6 Monate</h4>
+        <div class="price">72 € <small>für 6 Briefe</small></div>
+        <p>Einmal bezahlen, endet automatisch.</p>
+        <span class="spacer"></span>
+        <a class="btn" href="STRIPE_LINK_6M">6 Monate bestellen</a>
+      </div>
+      <div class="plan">
+        <h4>12 Monate</h4>
+        <div class="price">132 € <small>für 12 Briefe</small></div>
+        <p>Einmal bezahlen, endet automatisch.</p>
+        <span class="spacer"></span>
+        <a class="btn" href="STRIPE_LINK_12M">12 Monate bestellen</a>
+      </div>
     </div>
+    <p class="paynote">Bezahlen mit PayPal, Lastschrift oder Karte. Deine Adresse gibst du direkt beim Bezahlen an. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+    <p class="giftnote"><strong>Als Geschenk:</strong> Wähle 3, 6 oder 12 Monate und gib als Lieferadresse die Adresse der beschenkten Person an.</p>
+    <p class="en">Pay with PayPal, direct debit or card. You enter the delivery address at checkout. For a gift, choose 3, 6 or 12 months and use the recipient's address.</p>
   </section>
 
   <section aria-labelledby="faq">
@@ -279,8 +333,9 @@
     <div class="faq">
       <details><summary>Wohin verschickst du?</summary><p>Nach Deutschland, Österreich und in die Schweiz.</p></details>
       <details><summary>Wann kommt der erste Brief?</summary><p>Der erste Brief geht in der ersten Januarwoche 2027 raus. Danach verschicke ich jeden Monat bis zum 5.</p></details>
-      <details><summary>Kann ich kündigen?</summary><p>Das Monatsabo jederzeit zum Monatsende. Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung.</p></details>
-      <details><summary>Kann ich es verschenken?</summary><p>Ja. Du bekommst sofort einen Gutschein als PDF zum Ausdrucken. Der erste Brief geht an die beschenkte Person.</p></details>
+      <details><summary>Wie bezahle ich?</summary><p>Mit PayPal, per Lastschrift oder mit Karte. Die Zahlung läuft sicher über den Zahlungsdienst Stripe.</p></details>
+      <details><summary>Kann ich kündigen?</summary><p>Das Monatsabo jederzeit zum Monatsende, ganz einfach über <a href="kuendigen.html">Verträge hier kündigen</a>. Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung.</p></details>
+      <details><summary>Kann ich es verschenken?</summary><p>Ja. Wähle 3, 6 oder 12 Monate und gib beim Bezahlen die Adresse der beschenkten Person als Lieferadresse an. Schreib mir gern, wenn ich einen Gruß von dir in den ersten Brief legen soll.</p></details>
       <details><summary>Was, wenn ein Brief nicht ankommt?</summary><p>Schreib mir, dann schicke ich ihn noch einmal.</p></details>
       <details><summary>Sind die Kinder zu sehen?</summary><p>Nein. Höchstens mal etwas, das sie gemalt haben.</p></details>
     </div>
@@ -290,6 +345,12 @@
     <span class="sig">Bis bald im Briefkasten 🐌</span>
     <span>Instagram: <a href="https://www.instagram.com/snailmail_romania" target="_blank" rel="noopener">@snailmail_romania</a></span>
     <span>Fragen? <span style="user-select:all">snailmail.romania@gmail.com</span></span>
+    <nav class="legal" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB &amp; Widerruf</a>
+      <a href="kuendigen.html">Verträge hier kündigen</a>
+    </nav>
   </footer>
 </div>
 
