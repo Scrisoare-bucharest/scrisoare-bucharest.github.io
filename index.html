@@ -198,6 +198,8 @@
   details[open] summary::after { content: '–'; }
   summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   details p { margin: 8px 0 0; color: var(--ink-soft); }
+  summary .en { display: block; font-weight: 400; font-size: 0.85rem; margin-top: 2px; }
+  details p.en { margin-top: 4px; }
 
   footer { font-size: 0.9rem; color: var(--ink-soft); text-align: center; display: flex; flex-direction: column; gap: 4px; }
   footer a { color: var(--petrol); }
@@ -239,7 +241,7 @@
     <p class="en">Pre-order now. The first letter arrives in January. The first 30 become founding members: one year for €120.</p>
     <div class="actions">
       <a class="btn" href="#bestellen">Zu den Abos →</a>
-      <span class="small">PayPal · Lastschrift · Karte</span>
+      <span class="small">PayPal · Lastschrift · Karte · Direct debit · Card</span>
     </div>
   </section>
 
@@ -250,12 +252,12 @@
       <div class="item">
         <h4>Ein persönlicher Brief</h4>
         <p>Ein Markt, eine Nachbarin, ein Feiertag: Geschichten aus unserem Alltag in Rumänien.</p>
-        <p class="en">A personal letter with stories from everyday life.</p>
+        <p class="en">A personal letter: a market, a neighbour, a holiday. Stories from our everyday life in Romania.</p>
       </div>
       <div class="item">
         <h4>Ein Stück Rumänien</h4>
         <p>Ein Feiertag, eine Tradition und ein rumänisches Wort des Monats. Etwas, das man nicht einfach googelt.</p>
-        <p class="en">A holiday, a tradition and a Romanian word of the month.</p>
+        <p class="en">A piece of Romania: a holiday, a tradition and a Romanian word of the month. Something you can't just google.</p>
         <span class="stamp">scrisoare = Brief</span>
       </div>
       <div class="item">
@@ -266,7 +268,7 @@
       <div class="item">
         <h4>Eine kleine Beilage</h4>
         <p>Eine Überraschung aus Papier, flach genug für den Briefkasten.</p>
-        <p class="en">A little paper surprise.</p>
+        <p class="en">A little paper surprise, flat enough for your mailbox.</p>
       </div>
     </div>
   </section>
@@ -282,7 +284,7 @@
 
   <section id="bestellen" aria-labelledby="price">
     <h2 class="section-title" id="price">Abo wählen</h2>
-    <p class="en">Choose your plan · Versand nach DE, AT, CH</p>
+    <p class="en">Choose your plan · Versand weltweit · Worldwide shipping</p>
     <div class="plans">
       <div class="plan featured">
         <span class="badge">Nur 30 Plätze · bis 31.12.</span>
@@ -297,6 +299,7 @@
         <h4>Monatlich</h4>
         <div class="price">14 € <small>pro Brief</small></div>
         <p>Jederzeit zum Monatsende kündbar.</p>
+        <p class="en">Monthly, €14 per letter. Cancel anytime.</p>
         <span class="spacer"></span>
         <a class="btn" href="STRIPE_LINK_MONATLICH">Monatlich bestellen</a>
       </div>
@@ -304,6 +307,7 @@
         <h4>3 Monate</h4>
         <div class="price">39 € <small>für 3 Briefe</small></div>
         <p>Einmal bezahlen, endet automatisch. Schön zum Verschenken.</p>
+        <p class="en">3 letters, one payment, ends automatically. A lovely gift.</p>
         <span class="spacer"></span>
         <a class="btn" href="STRIPE_LINK_3M">3 Monate bestellen</a>
       </div>
@@ -311,6 +315,7 @@
         <h4>6 Monate</h4>
         <div class="price">72 € <small>für 6 Briefe</small></div>
         <p>Einmal bezahlen, endet automatisch.</p>
+        <p class="en">6 letters, one payment, ends automatically.</p>
         <span class="spacer"></span>
         <a class="btn" href="STRIPE_LINK_6M">6 Monate bestellen</a>
       </div>
@@ -318,6 +323,7 @@
         <h4>12 Monate</h4>
         <div class="price">132 € <small>für 12 Briefe</small></div>
         <p>Einmal bezahlen, endet automatisch.</p>
+        <p class="en">12 letters, one payment, ends automatically.</p>
         <span class="spacer"></span>
         <a class="btn" href="STRIPE_LINK_12M">12 Monate bestellen</a>
       </div>
@@ -331,20 +337,21 @@
     <h2 class="section-title" id="faq">Fragen</h2>
     <p class="en">FAQ</p>
     <div class="faq">
-      <details><summary>Wohin verschickst du?</summary><p>Nach Deutschland, Österreich und in die Schweiz.</p></details>
-      <details><summary>Wann kommt der erste Brief?</summary><p>Der erste Brief geht in der ersten Januarwoche 2027 raus. Danach verschicke ich jeden Monat bis zum 5.</p></details>
-      <details><summary>Wie bezahle ich?</summary><p>Mit PayPal, per Lastschrift oder mit Karte. Die Zahlung läuft sicher über den Zahlungsdienst Stripe.</p></details>
-      <details><summary>Kann ich kündigen?</summary><p>Das Monatsabo jederzeit zum Monatsende, ganz einfach über <a href="kuendigen.html">Verträge hier kündigen</a>. Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung.</p></details>
-      <details><summary>Kann ich es verschenken?</summary><p>Ja. Wähle 3, 6 oder 12 Monate und gib beim Bezahlen die Adresse der beschenkten Person als Lieferadresse an. Schreib mir gern, wenn ich einen Gruß von dir in den ersten Brief legen soll.</p></details>
-      <details><summary>Was, wenn ein Brief nicht ankommt?</summary><p>Schreib mir, dann schicke ich ihn noch einmal.</p></details>
-      <details><summary>Sind die Kinder zu sehen?</summary><p>Nein. Höchstens mal etwas, das sie gemalt haben.</p></details>
+      <details><summary>Wohin verschickst du? <span class="en">Where do you ship?</span></summary><p>Weltweit. Die Briefe reisen mit der rumänischen Post. Außerhalb Europas brauchen sie etwas länger.</p><p class="en">Worldwide. The letters travel with the Romanian post and take a little longer outside Europe.</p></details>
+      <details><summary>Wann kommt der erste Brief? <span class="en">When does the first letter arrive?</span></summary><p>Der erste Brief geht in der ersten Januarwoche 2027 raus. Danach verschicke ich jeden Monat bis zum 5.</p><p class="en">The first letter goes out in the first week of January 2027. After that, I post every month by the 5th.</p></details>
+      <details><summary>Wie bezahle ich? <span class="en">How do I pay?</span></summary><p>Mit PayPal, per Lastschrift oder mit Karte. Die Zahlung läuft sicher über den Zahlungsdienst Stripe.</p><p class="en">With PayPal, direct debit or card. Payments are processed securely by Stripe.</p></details>
+      <details><summary>Kann ich kündigen? <span class="en">Can I cancel?</span></summary><p>Das Monatsabo jederzeit zum Monatsende, ganz einfach über <a href="kuendigen.html">Verträge hier kündigen</a>. Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung.</p><p class="en">The monthly plan anytime, effective at the end of the month. Prepaid plans simply end, with no renewal.</p></details>
+      <details><summary>Kann ich es verschenken? <span class="en">Can I give it as a gift?</span></summary><p>Ja. Wähle 3, 6 oder 12 Monate und gib beim Bezahlen die Adresse der beschenkten Person als Lieferadresse an. Schreib mir gern, wenn ich einen Gruß von dir in den ersten Brief legen soll.</p><p class="en">Yes. Choose 3, 6 or 12 months and enter the recipient's address at checkout. Email me if you'd like a note from you in the first letter.</p></details>
+      <details><summary>Was, wenn ein Brief nicht ankommt? <span class="en">What if a letter gets lost?</span></summary><p>Schreib mir, dann schicke ich ihn noch einmal.</p><p class="en">Email me and I'll send it again.</p></details>
+      <details><summary>Sind die Kinder zu sehen? <span class="en">Will the children be shown?</span></summary><p>Nein. Höchstens mal etwas, das sie gemalt haben.</p><p class="en">No. At most, something they painted.</p></details>
     </div>
   </section>
 
   <footer>
     <span class="sig">Bis bald im Briefkasten 🐌</span>
+    <span class="en">See you in your mailbox</span>
     <span>Instagram: <a href="https://www.instagram.com/snailmail_romania" target="_blank" rel="noopener">@snailmail_romania</a></span>
-    <span>Fragen? <span style="user-select:all">snailmail.romania@gmail.com</span></span>
+    <span>Fragen? Questions? <span style="user-select:all">snailmail.romania@gmail.com</span></span>
     <nav class="legal" aria-label="Rechtliches">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
