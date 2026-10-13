@@ -219,3 +219,5 @@
   @media (min-width: 521px) {
     .plans:has(> .plan:nth-child(4):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
+  /* Nur ein weiteres Angebot neben dem Gründungsabo: volle Breite */
+  .plans:has(> .plan:nth-child(2):last-child) > .plan { grid-column: 1 / -1; }

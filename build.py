@@ -12,10 +12,10 @@ MONTHLY = "--monthly" in sys.argv  # Monatsabo erst ab Januar 2027 anbieten: pyt
 FORM_LINK = "https://forms.gle/tGnXjn6R2VdMi2mL7"
 MAIL = "snailmail.romania@gmail.com"
 LINKS = {
-    "gruendung": "STRIPE_LINK_GRUENDUNG",
+    "gruendung": "https://buy.stripe.com/3cIcN4fIVeqdcmz7x8bV600",
     "monatlich": "STRIPE_LINK_MONATLICH",
     "3m": "STRIPE_LINK_3M",
-    "6m": "STRIPE_LINK_6M",
+    "6m": "https://buy.stripe.com/7sYdR8gMZdm92LZdVwbV601",
     "12m": "STRIPE_LINK_12M",
 }
 
@@ -60,7 +60,7 @@ T = {
         ("12m", "12 Monate", "132 €", "für 12 Briefe", "Einmal bezahlen, endet automatisch.", "12 Monate bestellen"),
     ],
     paynote="Bezahlen mit PayPal, Lastschrift oder Karte. Deine Adresse gibst du direkt beim Bezahlen an. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
-    giftnote="<strong>Als Geschenk:</strong> Wähle 3, 6 oder 12 Monate und gib als Lieferadresse die Adresse der beschenkten Person an.",
+    giftnote="<strong>Als Geschenk:</strong> Wähle ein Abo und gib als Lieferadresse die Adresse der beschenkten Person an.",
     prices_h="Preise ab 1. Dezember",
     prices_rows=[("Monatlich, jederzeit kündbar", "14 €"), ("3 Monate", "39 €"), ("6 Monate", "72 €"), ("12 Monate", "132 €")],
     founding_h="Gründungsmitglied: 120 € für ein Jahr",
@@ -71,7 +71,7 @@ T = {
         ("Wann kommt der erste Brief?", "Der erste Brief geht in der ersten Januarwoche 2027 raus. Danach verschicke ich jeden Monat bis zum 5."),
         ("Wie bezahle ich?", "Mit PayPal, per Lastschrift oder mit Karte. Die Zahlung läuft sicher über den Zahlungsdienst Stripe."),
         ("Kann ich kündigen?", 'Das Monatsabo jederzeit zum Monatsende, ganz einfach über <a href="kuendigen.html">Verträge hier kündigen</a>. Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung.'),
-        ("Kann ich es verschenken?", "Ja. Wähle 3, 6 oder 12 Monate und gib beim Bezahlen die Adresse der beschenkten Person als Lieferadresse an. Schreib mir gern, wenn ich einen Gruß von dir in den ersten Brief legen soll."),
+        ("Kann ich es verschenken?", "Ja. Wähle ein Abo und gib beim Bezahlen die Adresse der beschenkten Person als Lieferadresse an. Für einen Gruß gibt es beim Bezahlen ein eigenes Feld."),
         ("Was, wenn ein Brief nicht ankommt?", "Schreib mir, dann schicke ich ihn noch einmal."),
         ("Sind die Kinder zu sehen?", "Nein. Höchstens mal etwas, das sie gemalt haben."),
     ],
@@ -122,7 +122,7 @@ T = {
         ("12m", "12 months", "€132", "for 12 letters", "One payment, ends automatically.", "Order 12 months"),
     ],
     paynote="Pay with PayPal, direct debit or card. You enter your delivery address at checkout. No VAT is charged under the German small business rule (§ 19 UStG).",
-    giftnote="<strong>As a gift:</strong> Choose 3, 6 or 12 months and use the recipient's address as the delivery address.",
+    giftnote="<strong>As a gift:</strong> Choose a plan and use the recipient's address as the delivery address.",
     prices_h="Prices from 1 December",
     prices_rows=[("Monthly, cancel anytime", "€14"), ("3 months", "€39"), ("6 months", "€72"), ("12 months", "€132")],
     founding_h="Founding member: €120 for a year",
@@ -133,7 +133,7 @@ T = {
         ("When does the first letter arrive?", "The first letter goes out in the first week of January 2027. After that, I post every month by the 5th."),
         ("How do I pay?", "With PayPal, direct debit or card. Payments are processed securely by Stripe."),
         ("Can I cancel?", 'The monthly plan anytime, effective at the end of the month, via <a href="kuendigen.html">Verträge hier kündigen (cancel your subscription)</a>. Prepaid plans simply end, with no renewal.'),
-        ("Can I give it as a gift?", "Yes. Choose 3, 6 or 12 months and enter the recipient's address at checkout. Email me if you'd like a note from you in the first letter."),
+        ("Can I give it as a gift?", "Yes. Choose a plan and enter the recipient's address at checkout. There's a field for a gift message, too."),
         ("What if a letter gets lost?", "Email me and I'll send it again."),
         ("Will the children be shown?", "No. At most, something they painted."),
     ],
@@ -201,6 +201,8 @@ def page(lang):
         for key, name, price, unit, text, btn in t["plans"]:
             if key == "monatlich" and not MONTHLY:
                 continue
+            if not LINKS[key].startswith("https://"):
+                continue  # noch kein Stripe-Link: Angebot ausblenden
             feat = key == "gruendung"
             badge = f'\n        <span class="badge">{t["badge"]}</span>' if feat else ""
             cards += f'''      <div class="plan{' featured' if feat else ''}">{badge}
