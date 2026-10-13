@@ -76,6 +76,8 @@ T = {
         ("Sind die Kinder zu sehen?", "Nein. Höchstens mal etwas, das sie gemalt haben."),
     ],
     faq_waitlist_skip={"Wie bezahle ich?"},
+    cancel_q="Kann ich kündigen?",
+    cancel_prepaid="Du musst nichts kündigen. Alle Abos sind vorausbezahlt und enden automatisch nach dem letzten Brief, ohne Verlängerung.",
     sig="Bis bald im Briefkasten 🐌",
     questions="Fragen?",
     legal=[("impressum.html", "Impressum"), ("datenschutz.html", "Datenschutz"), ("agb.html", "AGB &amp; Widerruf"), ("kuendigen.html", "Verträge hier kündigen")],
@@ -136,6 +138,8 @@ T = {
         ("Will the children be shown?", "No. At most, something they painted."),
     ],
     faq_waitlist_skip={"How do I pay?"},
+    cancel_q="Can I cancel?",
+    cancel_prepaid="There's nothing to cancel. All plans are prepaid and simply end after the last letter, with no renewal.",
     sig="See you in your mailbox 🐌",
     questions="Questions?",
     legal=[("impressum.html", "Legal notice"), ("datenschutz.html", "Privacy"), ("agb.html", "Terms &amp; withdrawal"), ("kuendigen.html", "Verträge hier kündigen (cancel)")],
@@ -174,7 +178,7 @@ def page(lang):
       <span class="small">{t["wl_small"]}</span>
     </div>
   </section>'''
-        rows = "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a, b in t["prices_rows"])
+        rows = "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for i, (a, b) in enumerate(t["prices_rows"]) if MONTHLY or i > 0)
         order = f'''  <section aria-labelledby="price">
     <h2 class="section-title" id="price">{t["prices_h"]}</h2>
     <p class="en">{t["plans_sub"]}</p>
@@ -219,6 +223,9 @@ def page(lang):
     faq = ""
     for q, a in t["faq"]:
         if WAITLIST and q in t["faq_waitlist_skip"]:
+            continue
+        if q == t["cancel_q"] and not MONTHLY:
+            faq += f"      <details><summary>{q}</summary><p>{t['cancel_prepaid']}</p></details>\n"
             continue
         if WAITLIST and "kuendigen.html" in a:
             a = a.split(", ganz einfach")[0].split(", effective")[0] + (". Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung." if lang == "de" else ", effective at the end of the month. Prepaid plans simply end, with no renewal.")
