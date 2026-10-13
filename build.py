@@ -224,9 +224,9 @@ def page(lang):
             a = a.split(", ganz einfach")[0].split(", effective")[0] + (". Vorausbezahlte Abos laufen automatisch aus, ohne Verlängerung." if lang == "de" else ", effective at the end of the month. Prepaid plans simply end, with no renewal.")
         faq += f"      <details><summary>{q}</summary><p>{a}</p></details>\n"
 
-    legal = "" if WAITLIST else (
-        '    <nav class="legal" aria-label="Legal">\n'
-        + "".join(f'      <a href="{h}">{l}</a>\n' for h, l in t["legal"])
+    legal_links = t["legal"][:2] if WAITLIST else t["legal"]
+    legal = ('    <nav class="legal" aria-label="Legal">\n'
+        + "".join(f'      <a href="{h}">{l}</a>\n' for h, l in legal_links)
         + "    </nav>\n")
 
     me = "".join(f"    <p>{p}</p>\n" for p in t["me_p"])
